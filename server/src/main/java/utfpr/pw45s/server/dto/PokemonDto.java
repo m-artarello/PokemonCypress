@@ -1,12 +1,10 @@
 package utfpr.pw45s.server.dto;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.*;
+import utfpr.pw45s.server.model.TipoPokemon;
 
 @Data
 @NoArgsConstructor
@@ -23,9 +21,9 @@ public class PokemonDto {
     @NotNull(message = "O código da pokedex do pokemon não pode ser nulo!")
     private Integer codPokedex;
 
+    @Enumerated(EnumType.STRING)
     @NotNull(message = "O tipo do pokemon não pode ser nulo!")
-    @Size(min = 3, max = 50, message = "O tipo do pokemon deve ter entre 3 a 50 caracteres.")
-    private String tipo;
+    private TipoPokemon tipo;
 
     @NotNull(message = "O nível do pokemon não pode ser nulo!")
     private Integer nivel;
