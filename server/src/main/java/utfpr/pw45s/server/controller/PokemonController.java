@@ -8,10 +8,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import utfpr.pw45s.server.dto.PokemonDto;
 import utfpr.pw45s.server.model.Pokemon;
+import utfpr.pw45s.server.model.TipoPokemon;
 import utfpr.pw45s.server.service.CrudService;
 import utfpr.pw45s.server.service.PokemonService;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
@@ -40,11 +43,15 @@ public class PokemonController extends CrudController<Pokemon, PokemonDto, Long>
                 .map(this::convertToDto)
                 .collect(Collectors.toList());
 
-        if (pokemons.isEmpty()){
-            return ResponseEntity.notFound().build();
-        } else {
             return ResponseEntity.ok(pokemons);
-        }
+
+    }
+
+    @GetMapping("tipo")
+    public List<Map<String, String>> getTiposPokemon() {
+        return Arrays.stream(TipoPokemon.values())
+                .map(tipo -> Map.of("chave", tipo.getChave(), "descricao", tipo.getDescricao()))
+                .collect(Collectors.toList());
     }
 
     @Override

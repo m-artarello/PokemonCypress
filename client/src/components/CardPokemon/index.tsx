@@ -1,55 +1,43 @@
-import { ChangeEvent } from "react";
+import { Button } from "@chakra-ui/react";
+import { IPokemon } from "../../commons/interfaces";
 
-export interface IPokemon {
-    id?: number;
-    nome: string;
-    codPokedex: number;
-    tipo: string;
-    nivel: number;
-    ataqueBasico: string;
-    ataqueCarregado: string;
-    observacoes: string;
-  }
-// Componente que representa uma carta de Pokémon
-const PokemonCard: React.FC<{ pokemon: IPokemon }> = ({ pokemon }) => {
-    return (
-      <div style={{
-        border: '1px solid #ccc',
-        borderRadius: '10px',
-        padding: '15px',
-        width: '300px',
-        textAlign: 'center',
-        boxShadow: '2px 2px 8px rgba(0,0,0,0.1)',
-        background: '#fff'}}>
-        <h3>{pokemon.nome}</h3>
-        <p>Nº Pokédex: {pokemon.codPokedex}</p>
-        <p>Tipo: {pokemon.tipo}</p>
-        <p>Nível: {pokemon.nivel}</p>
-        <h4>Ataques:</h4>
-        <ul style={{listStyle: 'none'}}>
-          <li>{pokemon.ataqueBasico}</li>
-          <li>{pokemon.ataqueCarregado}</li>
-        </ul>
-        <p>Observações: {pokemon.observacoes}</p>
-      </div>
-    );
-  };
-
-  // Estilos simples
-const styles = {
-    container: {
-      display: 'flex',
-      flexWrap: 'wrap',
-      gap: '20px',
-    },
-    card: {
-      border: '1px solid #ccc',
+const PokemonCard: React.FC<{ pokemon: IPokemon; onEdit: (id: number) => void; onRemove: (id: number) => void; }> = ({ pokemon, onEdit, onRemove }) => {
+  return (
+    <div style={{
+      border: '5px solid #1d2b5a',
       borderRadius: '10px',
       padding: '15px',
-      width: '50px',
+      width: '300px',
       textAlign: 'center',
       boxShadow: '2px 2px 8px rgba(0,0,0,0.1)',
-    },
-  };
-  
-  export default PokemonCard;
+      background: '#ffffffa8'
+    }}>
+      <h3>{pokemon.codPokedex} | {pokemon.nome}</h3>
+      <div className="d-flex justify-content-evenly">
+        <div className="d-flex justify-content-center">
+          <p style={{ color: '#1d2b5a', fontWeight: '500', marginRight: '5px' }}>Tipo: </p><p> {pokemon.tipo}</p>
+        </div>
+        <div className="d-flex justify-content-center">
+          <p style={{ color: '#1d2b5a', fontWeight: '500', marginRight: '5px' }}>Nível: </p><p> {pokemon.nivel}</p>
+        </div>
+
+      </div>
+
+      <div className="d-flex justify-content-center">
+        <p style={{ color: '#1d2b5a', fontWeight: '500', marginRight: '5px' }}>Ataque básico: </p><p> {pokemon.ataqueBasico}</p>
+      </div>
+      <div className="d-flex justify-content-center">
+        <p style={{ color: '#1d2b5a', fontWeight: '500', marginRight: '5px' }}>Ataque carregado: </p><p> {pokemon.ataqueCarregado}</p>
+      </div>
+
+      <p>{pokemon.observacoes}</p>
+
+      <div className="d-flex justify-content-evenly">
+        <Button onClick={() => onEdit(pokemon.id!)} colorScheme="blue">Editar</Button>
+        <Button onClick={() => onRemove(pokemon.id!)} colorScheme="red">Excluir</Button>
+      </div>
+    </div>
+  );
+};
+
+export default PokemonCard;

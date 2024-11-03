@@ -40,7 +40,6 @@ public class Pokemon {
     @Size(min = 3, max = 100, message = "O ataque carregado do pokemon deve ter entre 3 a 100 caracteres.")
     private String ataqueCarregado;
 
-    @Size(min = 2, max = 1024, message = "As observações do pokemon devem ter entre 2 a 1024 caracteres.")
     @Column(columnDefinition = "TEXT")
     private String observacoes;
 }
