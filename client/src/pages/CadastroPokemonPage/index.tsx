@@ -2,7 +2,7 @@ import { ChangeEvent, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { IPokemon } from "../../commons/interfaces";
 import PokemonService from "../../service/PokemonService";
-import { Box, Heading, Textarea, Alert, AlertIcon, AlertTitle, AlertDescription } from "@chakra-ui/react";
+import { Box, Heading, Textarea, Alert, AlertIcon, AlertTitle, AlertDescription, useToast } from "@chakra-ui/react";
 import logo from "../../assets/pokemon_logo-removebg-preview.png";
 import axios from "axios";
 
@@ -33,6 +33,7 @@ export function CadastroPokemonPage() {
   });
 
   const navigate = useNavigate();
+  const toast = useToast();
 
   useEffect(() => {
     const fetchTipos = async () => {
@@ -129,7 +130,14 @@ export function CadastroPokemonPage() {
     try {
       const response = await PokemonService.save(pokemon);
       if (response.status === 200 || response.status === 201) {
-        setSuccessMessage("Pokémon cadastrado com sucesso!");
+        toast({
+          title: "Sucesso!",
+          description: "Pokémon cadastrado com sucesso!",
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+          position: "top-right"
+        });
         navigate("/");
       }
     } catch (error: unknown) {
@@ -152,7 +160,7 @@ export function CadastroPokemonPage() {
       <div className="d-flex text-center justify-content-center align-items-center">
         <img src={logo} alt="Pokemon Logo" />
       </div>
-      <Box bg={'#ffe27b'} p={4} className="container mt-5" style={{ width: '50%', borderRadius: '10px' }}>
+      <Box bg={'#ffe27b'} p={4} className="container mt-2" style={{ width: '50%', borderRadius: '10px' }}>
         <div className="d-flex justify-content-center">
           <Heading as="h3" size="lg" mb={4}>Cadastro de Pokémons</Heading>
         </div>
@@ -184,7 +192,7 @@ export function CadastroPokemonPage() {
                     onChange={onChange}
                     value={form.codPokedex}
                   />
-                  {errors.codPokedex && <span className="text-danger">{errors.codPokedex}</span>}
+                  {errors.codPokedex && <span className="text-danger" style={{ marginTop: '0.2rem', fontSize: '0.5rem',  lineHeight: '1', display: 'inline-block' }}>{errors.codPokedex}</span>}
                 </div>
                 <div className="col-8">
                   <label htmlFor="nome">Nome do Pokémon<span style={{ color: 'red' }}> *</span></label>
@@ -196,7 +204,7 @@ export function CadastroPokemonPage() {
                     onChange={onChange}
                     value={form.nome}
                   />
-                  {errors.nome && <span className="text-danger">{errors.nome}</span>}
+                  {errors.nome && <span className="text-danger" style={{ marginTop: '0.2rem', fontSize: '0.5rem',  lineHeight: '1', display: 'inline-block' }}>{errors.nome}</span>}
                 </div>
                 <div className="col-2">
                   <label htmlFor="nivel">Nível<span style={{ color: 'red' }}> *</span></label>
@@ -208,7 +216,7 @@ export function CadastroPokemonPage() {
                     onChange={onChange}
                     value={form.nivel}
                   />
-                  {errors.nivel && <span className="text-danger">{errors.nivel}</span>}
+                  {errors.nivel && <span className="text-danger" style={{ marginTop: '0.2rem', fontSize: '0.5rem',  lineHeight: '1', display: 'inline-block' }}>{errors.nivel}</span>}
                 </div>
               </div>
               <div className="d-flex row">
@@ -227,7 +235,7 @@ export function CadastroPokemonPage() {
                       </option>
                     ))}
                   </select>
-                  {errors.tipo && <span className="text-danger">{errors.tipo}</span>}
+                  {errors.tipo && <span className="text-danger" style={{ marginTop: '0.2rem', fontSize: '0.5rem',  lineHeight: '1', display: 'inline-block' }}>{errors.tipo}</span>}
                 </div>
                 <div className="col-4">
                   <label htmlFor="ataqueBasico">Ataque Básico<span style={{ color: 'red' }}> *</span></label>
@@ -235,21 +243,23 @@ export function CadastroPokemonPage() {
                     name="ataqueBasico"
                     className="form-control"
                     type="text"
+                    placeholder="Ex.: Chicote de vinha"
                     onChange={onChange}
                     value={form.ataqueBasico}
                   />
-                  {errors.ataqueBasico && <span className="text-danger">{errors.ataqueBasico}</span>}
+                  {errors.ataqueBasico && <span className="text-danger" style={{ marginTop: '0.2rem', fontSize: '0.5rem',  lineHeight: '1', display: 'inline-block' }}>{errors.ataqueBasico}</span>}
                 </div>
                 <div className="col-4">
                   <label htmlFor="ataqueCarregado">Ataque Carregado<span style={{ color: 'red' }}> *</span></label>
                   <input
                     name="ataqueCarregado"
                     className="form-control"
+                    placeholder="Ex.: Bomba de sementes"
                     type="text"
                     onChange={onChange}
                     value={form.ataqueCarregado}
                   />
-                  {errors.ataqueCarregado && <span className="text-danger">{errors.ataqueCarregado}</span>}
+                  {errors.ataqueCarregado && <span className="text-danger" style={{ fontSize: '0.5rem', lineHeight: '1.2' }}>{errors.ataqueCarregado}</span>}
                 </div>
               </div>
               <div className="d-flex row">
@@ -258,12 +268,12 @@ export function CadastroPokemonPage() {
                   <Textarea
                     name="observacoes"
                     className="form-control"
-                    placeholder="Observações sobre o Pokémon"
+                    placeholder="Ex.: POKÉMON SEMENTE - Bulbasaur pode ser visto tirando uma soneca ao sol. A semente em suas costas cresce cada vez mais à medida que absorve raios solares."
                     onChange={onChange}
                     value={form.observacoes}
                     bg= 'white'
+                    rows={3}
                   />
-                  {errors.observacoes && <span className="text-danger">{errors.observacoes}</span>}
                 </div>
               </div>
             </div>

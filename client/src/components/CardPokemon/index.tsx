@@ -1,7 +1,25 @@
-import { Button } from "@chakra-ui/react";
+import { Button, useToast } from "@chakra-ui/react";
 import { IPokemon } from "../../commons/interfaces";
 
-const PokemonCard: React.FC<{ pokemon: IPokemon; onEdit: (id: number) => void; onRemove: (id: number) => void; }> = ({ pokemon, onEdit, onRemove }) => {
+const PokemonCard: React.FC<{ 
+  pokemon: IPokemon; 
+  onEdit: (id: number) => void; 
+  onRemove: (id: number) => void; 
+}> = ({ pokemon, onEdit, onRemove }) => {
+  const toast = useToast();
+
+  const handleRemove = () => {
+    onRemove(pokemon.id!);
+    toast({
+      title: "Pokémon removido",
+      description: `${pokemon.nome} foi removido com sucesso.`,
+      status: "success",
+      duration: 3000,
+      isClosable: true,
+      position: "top-right"
+    });
+  };
+
   return (
     <div style={{
       border: '5px solid #1d2b5a',
@@ -20,7 +38,6 @@ const PokemonCard: React.FC<{ pokemon: IPokemon; onEdit: (id: number) => void; o
         <div className="d-flex justify-content-center">
           <p style={{ color: '#1d2b5a', fontWeight: '500', marginRight: '5px' }}>Nível: </p><p> {pokemon.nivel}</p>
         </div>
-
       </div>
 
       <div className="d-flex justify-content-center">
@@ -34,7 +51,7 @@ const PokemonCard: React.FC<{ pokemon: IPokemon; onEdit: (id: number) => void; o
 
       <div className="d-flex justify-content-evenly">
         <Button onClick={() => onEdit(pokemon.id!)} colorScheme="blue">Editar</Button>
-        <Button onClick={() => onRemove(pokemon.id!)} colorScheme="red">Excluir</Button>
+        <Button onClick={handleRemove} colorScheme="red">Excluir</Button>
       </div>
     </div>
   );

@@ -78,8 +78,8 @@ export function ListagemPokemonPage() {
                     ))}
                 </Grid>
                 <div className="mt-3 d-flex justify-content-center">
-                    <Button onClick={prevPage} disabled={currentPage === 0} leftIcon={<IoIosArrowBack />} className="btn me-1"></Button>
-                    <Button onClick={nextPage} disabled={currentPage === totalPages - 1} rightIcon={<IoIosArrowForward />} className="btn"></Button>
+                    <Button style={{background: '#ffffffa8'}} onClick={prevPage} disabled={currentPage === 0} leftIcon={<IoIosArrowBack />} className="btn me-1"></Button>
+                    <Button style={{background: '#ffffffa8'}} onClick={nextPage} disabled={currentPage === totalPages - 1} rightIcon={<IoIosArrowForward />} className="btn"></Button>
                 </div>
             </>
         );
