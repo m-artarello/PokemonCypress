@@ -92,7 +92,7 @@ export function ListagemPokemonPage() {
                     <img src={logo} alt="Pokemon Logo" />
                 </div>
                 <div className="my-3 d-flex text-center justify-content-center align-items-center">
-                    <Button colorScheme="teal">
+                    <Button id='btnCadastrarPokemon' colorScheme="teal">
                         <a href="/cadastrar" style={{ color: 'white' }}>Cadastrar Pokémon</a>
                     </Button>
                 </div>

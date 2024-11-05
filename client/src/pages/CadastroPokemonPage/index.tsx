@@ -191,6 +191,7 @@ export function CadastroPokemonPage() {
                     placeholder="0"
                     onChange={onChange}
                     value={form.codPokedex}
+                    id="codPokedex"
                   />
                   {errors.codPokedex && <span className="text-danger" style={{ marginTop: '0.2rem', fontSize: '0.5rem',  lineHeight: '1', display: 'inline-block' }}>{errors.codPokedex}</span>}
                 </div>
@@ -203,6 +204,7 @@ export function CadastroPokemonPage() {
                     placeholder="Ex.: Bulbasaur"
                     onChange={onChange}
                     value={form.nome}
+                    id="nome"
                   />
                   {errors.nome && <span className="text-danger" style={{ marginTop: '0.2rem', fontSize: '0.5rem',  lineHeight: '1', display: 'inline-block' }}>{errors.nome}</span>}
                 </div>
@@ -215,6 +217,7 @@ export function CadastroPokemonPage() {
                     placeholder="Ex: 36"
                     onChange={onChange}
                     value={form.nivel}
+                    id="nivel"
                   />
                   {errors.nivel && <span className="text-danger" style={{ marginTop: '0.2rem', fontSize: '0.5rem',  lineHeight: '1', display: 'inline-block' }}>{errors.nivel}</span>}
                 </div>
@@ -227,6 +230,7 @@ export function CadastroPokemonPage() {
                     className="form-control"
                     value={form.tipo}
                     onChange={onChange}
+                    id="tipo"
                   >
                     <option value="">Selecione um tipo</option>
                     {tipos.map((tipo) => (
@@ -246,6 +250,7 @@ export function CadastroPokemonPage() {
                     placeholder="Ex.: Chicote de vinha"
                     onChange={onChange}
                     value={form.ataqueBasico}
+                    id="ataqueBasico"
                   />
                   {errors.ataqueBasico && <span className="text-danger" style={{ marginTop: '0.2rem', fontSize: '0.5rem',  lineHeight: '1', display: 'inline-block' }}>{errors.ataqueBasico}</span>}
                 </div>
@@ -258,6 +263,7 @@ export function CadastroPokemonPage() {
                     type="text"
                     onChange={onChange}
                     value={form.ataqueCarregado}
+                    id="ataqueCarregado"
                   />
                   {errors.ataqueCarregado && <span className="text-danger" style={{ fontSize: '0.5rem', lineHeight: '1.2' }}>{errors.ataqueCarregado}</span>}
                 </div>
@@ -273,11 +279,12 @@ export function CadastroPokemonPage() {
                     value={form.observacoes}
                     bg= 'white'
                     rows={3}
+                    id="observacoes"
                   />
                 </div>
               </div>
             </div>
-            <div className="d-flex justify-content-evenly mt-4">
+            <div  className="d-flex justify-content-evenly mt-4">
               <button className="link-secondary" onClick={() => navigate("/")}>
                 Voltar para a Pokédex
               </button>
