@@ -21,7 +21,7 @@ const PokemonCard: React.FC<{
   };
 
   return (
-    <div style={{
+    <div data-nome={pokemon.nome} style={{
       border: '5px solid #1d2b5a',
       borderRadius: '10px',
       padding: '15px',
@@ -30,7 +30,9 @@ const PokemonCard: React.FC<{
       boxShadow: '2px 2px 8px rgba(0,0,0,0.1)',
       background: '#ffffffa8'
     }}>
-      <h3>{pokemon.codPokedex} | {pokemon.nome}</h3>
+      <h3>
+        {pokemon.codPokedex} | {pokemon.nome}
+      </h3>
       <div className="d-flex justify-content-evenly">
         <div className="d-flex justify-content-center">
           <p style={{ color: '#1d2b5a', fontWeight: '500', marginRight: '5px' }}>Tipo: </p><p> {pokemon.tipo}</p>
@@ -50,8 +52,8 @@ const PokemonCard: React.FC<{
       <p>{pokemon.observacoes}</p>
 
       <div className="d-flex justify-content-evenly">
-        <Button onClick={() => onEdit(pokemon.id!)} colorScheme="blue">Editar</Button>
-        <Button onClick={handleRemove} colorScheme="red">Excluir</Button>
+        <Button onClick={() => onEdit(pokemon.id!)} colorScheme="blue" name="btnEditarPokemon" >Editar</Button>
+        <Button onClick={handleRemove} colorScheme="red" name="btnExcluirPokemon">Excluir</Button>
       </div>
     </div>
   );
