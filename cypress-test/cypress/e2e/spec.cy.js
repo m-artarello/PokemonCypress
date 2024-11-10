@@ -8,12 +8,10 @@ const TIPO = '#tipo'
 const ATAQUE_BASICO = '#ataqueBasico'
 const ATAQUE_CARREGADO = '#ataqueCarregado'
 const OBSERVACOES = '#observacoes'
-const TOAST = '#toast-3-title'
 const BOTAO_EDITAR_POKEMON = '[name="btnEditarPokemon"]:first'
 const CARD_POKEMON_TESTE = '[data-nome="Cypress"]'
 
-
-describe('template spec', () => {
+describe('CRUD Pokémon', () => {
   beforeEach('passes', () => {
     cy.visit('http://localhost:5173')
   })
@@ -55,6 +53,13 @@ describe('template spec', () => {
 
       cy.get(SPAN_ERRO).should('be.visible')
     })
+
+    it('Edição das observações de um Pokémon', () =>{
+      cy.get(BOTAO_EDITAR_POKEMON).should('be.visible').click()
+
+      cy.get(OBSERVACOES).should('be.visible', 'be.enabled').clear().type('Ele carrega uma semente nas costas desde o nascimento. Conforme seu corpo cresce, a semente também cresce.')
+      cy.get(BOTAO_SALVAR).should('be.visible').click()
+    })
   })
   
   context('Exclusão de pokemon', () => {
@@ -67,5 +72,4 @@ describe('template spec', () => {
       cy.get(CARD_POKEMON_TESTE).should('not.exist')
     })
   })
-  
 })

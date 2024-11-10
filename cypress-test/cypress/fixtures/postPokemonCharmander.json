@@ -1,0 +1,9 @@
+{
+    "nome": "Charmander",
+    "codPokedex": 4,
+    "tipo": "FOGO",
+    "nivel": 5,
+    "ataqueBasico": "Brasa",
+    "ataqueCarregado": "Ataque de Chamas",
+    "observacoes": "A chama que queima na ponta da sua cauda é um indicador de suas emoções. A chama oscila quando Charmander está contente. Se o pokémon fica com raiva, a chama queima violentamente."
+}

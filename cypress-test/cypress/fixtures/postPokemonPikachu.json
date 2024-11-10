@@ -1,0 +1,9 @@
+{
+    "nome": "Pikachu",
+    "codPokedex": 25,
+    "tipo": "ELETRICO",
+    "nivel": 8,
+    "ataqueBasico": "Trovoada de Choques",
+    "ataqueCarregado": "Relâmpago",
+    "observacoes": "Quando Pikachu acha alguma coisa nova, lança uma carga elétrica nela. Se você encontrar uma fruta torrada, é prova de que este Pokémon errou na intensidade de sua carga elétrica"
+}

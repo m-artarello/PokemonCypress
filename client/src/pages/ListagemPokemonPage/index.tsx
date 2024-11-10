@@ -62,7 +62,7 @@ export function ListagemPokemonPage() {
         const navigate = useNavigate();
 
         const onEdit = (id: number) => {
-            navigate(`/cadastrar/${id}`); // Redireciona para a página de cadastro com o ID do Pokémon
+            navigate(`/cadastrar/${id}`); 
         };
 
         return (
@@ -72,7 +72,7 @@ export function ListagemPokemonPage() {
                         <PokemonCard
                             key={pokemon.id}
                             pokemon={pokemon}
-                            onEdit={onEdit} // Passa a função onEdit corretamente
+                            onEdit={onEdit} 
                             onRemove={onRemove}
                         />
                     ))}
